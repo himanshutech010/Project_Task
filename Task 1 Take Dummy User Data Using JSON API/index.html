@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users Table</title>
+</head>
+<style>
+button {
+  background-color: #8e1128a2;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+button:hover {
+  background-color: #04AA6D; /* Green */
+  color: white;
+}
+table, td, th {
+  border: 1px solid;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+thead {
+    background-color: rgb(35, 29, 29);
+    color: wheat;
+}
+</style>
+<body>
+    <div class="container">
+        <button id="userData">Get User Data</button>
+    </div>
+    <div class="container">
+        <table class="table" id="table_data">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <script>
+        let userData = document.getElementById("userData");
+        userData.addEventListener('click', () => {
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://dummyjson.com/user', true);
+
+            xhr.onload = function () {
+                if (this.status === 200) {
+                    let objectData = JSON.parse(this.responseText);
+                    console.log(objectData);
+                    let table_data = document.getElementById("table_data");
+                    data = `<thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Gender</th>
+                        </tr>
+                    </thead>`;
+
+                    for (value in objectData.users) {
+                        data += `<tr data-id="${value}" class="user-row">
+                            <td>${objectData.users[value].firstName}</td>
+                            <td>${objectData.users[value].lastName}</td>
+                            <td>${objectData.users[value].gender}</td>
+                        </tr>`;
+                    }
+                    table_data.innerHTML = data;
+
+                    
+                    let userRows = document.querySelectorAll('.user-row');
+                    userRows.forEach(row => {
+                        row.addEventListener('click', () => {
+                            let userId = row.getAttribute('data-id');
+                            openUserDetailsPage(objectData.users[userId]);
+                        });
+                    });
+                }
+            }
+            xhr.send();
+        });
+
+        function openUserDetailsPage(user) {
+    const userDetailsString = JSON.stringify(user);
+    const userDetailsEncoded = encodeURIComponent(userDetailsString);
+
+    window.open(`userDetails.html?userDetails=${userDetailsEncoded}`, '_blank');
+}
+    </script>
+</body>
+</html>
