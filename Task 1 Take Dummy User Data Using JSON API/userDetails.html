@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <style>
+        table, td, th {
+            border: 1px solid;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        thead {
+            background-color: rgb(35, 29, 29);
+            color: wheat;
+        }
+    </style>
+</head>
+<body>
+    <h2>User Details</h2>
+    <table id="userDetailsTable">
+        <thead>
+            <tr>
+                <th>Attribute</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+    </table>
+    <script>
+   
+        const urlParams = new URLSearchParams(window.location.search);
+        const userDetails = JSON.parse(urlParams.get('userDetails'));
+
+    
+        const userDetailsTable = document.getElementById('userDetailsTable');
+        for (const [attribute, value] of Object.entries(userDetails)) {
+            userDetailsTable.innerHTML += `<tr><td>${attribute}</td><td>${value}</td></tr>`;
+        }
+    </script>
+</body>
+</html>
