@@ -1,4 +1,6 @@
-var nameError = document.getElementById('name-error');
+var firstnameError = document.getElementById('first-name-error');
+var lastnameError = document.getElementById('last-name-error');
+var birthError = document.getElementById('birth-error');
 var phoneError = document.getElementById('phone-error');
 var emailError = document.getElementById('email-error');
 var recheckEmailError = document.getElementById('recheck-email-error');
@@ -9,26 +11,53 @@ var recheckPasswordError = document.getElementById('recheck-password-error');
 
 
 
-function validateName(){
-    var name = document.getElementById('contact-name').value;
+function validatefirstName(){
+    var name = document.getElementById('contact-first-name').value;
 
     if(name.length == 0){
-        nameError.innerHTML = 'Name is required';
+        firstnameError.innerHTML = 'Name is required';
         return false;
     }
     if(name.length>20){
-        nameError.innerHTML = 'Name should be less than or equal to 20 characters';
+        firstnameError.innerHTML = 'Name should be less than or equal to 20 characters';
         return false;
     }
 
-    if(!name.match(/^[A-Za-z]+(?:\s[A-Za-z]*)?$/)){
-        nameError.innerHTML = 'Write Full Name';
+    if(!name.match(/^[A-Za-z]+$/)){
+        firstnameError.innerHTML = 'Write First Name';
         return false;
     }
 
-    nameError.innerHTML = '<i class="fas fa-check-circle"></i>';
+    firstnameError.innerHTML = '<i class="fas fa-check-circle"></i>';
     return true;
 
+}
+
+function validatelastName(){
+    var name = document.getElementById('contact-last-name').value;
+
+    if(name.length == 0){
+        lastnameError.innerHTML = 'Name is required';
+        return false;
+    }
+    if(name.length>20){
+        lastnameError.innerHTML = 'Name should be less than or equal to 20 characters';
+        return false;
+    }
+
+    if(!name.match(/^[A-Za-z]+$/)){
+        lastnameError.innerHTML = 'Write Last Name';
+        return false;
+    }
+
+    lastnameError.innerHTML = '<i class="fas fa-check-circle"></i>';
+    return true;
+
+}
+
+function validateDOB() {
+    var dob = document.getElementById('contact-birth').value;
+    return true;
 }
 
 
@@ -141,7 +170,7 @@ function recheckPassword() {
 
 
 function validateForm(){
-    if(!validateName() || !validatePhone() || !validateEmail() || !validatePassword() || !recheckPassword()){
+    if(!validateName() || !validatePhone() || !validateDOB() || !validateEmail() || !validatePassword() || !recheckPassword()){
         submitError.style.display = 'block';
         
         submitError.innerHTML = 'Please fix error to submit';
@@ -153,4 +182,5 @@ function validateForm(){
     }
     alert('Form submitted successfully!');
         return true;
+
 }
