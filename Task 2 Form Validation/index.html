@@ -13,11 +13,23 @@
     <div class="container">
       
         <form>
-              <p>Validation Form</p>
-               <div class="input-group">
-                <label>Full Name</label>
-                <input type="text" placeholder="Enter Your Name" id="contact-name" onkeyup="validateName()">
-                <span id="name-error"></span>
+            <p>Validation Form</p>
+            <div class="input-group">
+                <label>First Name</label>
+                <input type="text" placeholder="Enter Your First Name" id="contact-first-name" onkeyup="validatefirstName()">
+                <span id="first-name-error"></span>
+            </div>
+
+            <div class="input-group">
+                <label>Last Name</label>
+                <input type="text" placeholder="Enter Your Last Name" id="contact-last-name" onkeyup="validatelastName()">
+                <span id="last-name-error"></span>
+            </div>
+
+            <div class="input-group">
+                <label>Date Of Birth</label>
+                <input type="date" id="contact-birth" onkeyup="validateDOB()" >
+                <span id="birth-error"></span>
             </div>
 
 
@@ -48,7 +60,7 @@
           </div>
 
           <div class="input-group">
-              <label>Re-enter Password</label>
+              <label>Re-Enter Password</label>
               <input type="password" placeholder="Enter Password again" id="contact-recheck-password" onkeyup="recheckPassword()">
               <span id="recheck-password-error"></span>
           </div>
