@@ -151,4 +151,6 @@ function validateForm(){
         return false;
 
     }
+    alert('Form submitted successfully!');
+        return true;
 }
